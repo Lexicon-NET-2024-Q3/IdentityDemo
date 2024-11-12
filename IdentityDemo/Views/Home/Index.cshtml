@@ -6,3 +6,27 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <p>Hello please login!</p>
+}
+@if (User.Identity.IsAuthenticated)
+{
+    if(User.IsInRole("User") && User.IsInRole("Admin"))
+    {
+        <p>Hello User & Admin!</p>
+    }
+    else if (User.IsInRole("User"))
+    {
+        <p>Hello User!</p>
+    }
+    else if (User.IsInRole("Admin"))
+    {
+        <p>Hello Admin!</p>
+    }
+    else
+    {
+        <p>Hello logged in visitor!</p>
+    }
+}
